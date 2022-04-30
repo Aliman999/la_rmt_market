@@ -28,24 +28,6 @@ server.head("/rmt/:type/all", scripts.selectAll);
 server.get("/rmt/historical/:server", scripts.selectServer);
 server.head("/rmt/historical/:server", scripts.selectServer);
 
-server.get("/rmt/test", (req, res, next) => {
-  res.send("Success");
-  next();
-});
-server.head("/rmt/test", (req, res, next) => {
-  res.send("Success");
-  next();
-});
-
-server.get("/rmt", (req, res, next) => {
-  res.send("Success");
-  next();
-});
-server.head("/rmt", (req, res, next) => {
-  res.send("Success");
-  next();
-});
-
 server.listen(8081, function () {
   console.log('%s listening at %s', server.name, server.url);
 });
