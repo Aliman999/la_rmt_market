@@ -37,6 +37,6 @@ server.head("/v1/rmt/test", (req, res, next) => {
   next();
 });
 
-server.listen(25599, function () {
+server.listen(2599, function () {
   console.log('%s listening at %s', server.name, server.url);
 });
