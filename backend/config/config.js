@@ -13,6 +13,6 @@ const config = {
   Env: process.env.DEV_ENVIRONMENT,
 };
 
-console.log(config);
+//console.log(config);
 
 module.exports = config;
