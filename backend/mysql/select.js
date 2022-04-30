@@ -61,7 +61,9 @@ function select(data = { source: null, server: null, region: null, subRegion: nu
       }
     });
 
-    statement += ` ORDER BY id DESC;`; //can cause problems
+    if (data.historical) {
+      statement += ` ORDER BY id DESC;`
+    }
 
     query(statement, params).then((result, err)=>{
       if(err) reject(err);
