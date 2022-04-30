@@ -13,7 +13,7 @@ export default function Chart() {
   useEffect(() => {
     setLoading(true)
     
-    fetch('http://localhost:8080/v1/live/all')
+    fetch('https://mobitracker.co/rmt/live/all')
       .then((res) => res.json())
       .then((data) => {
         setData(data)

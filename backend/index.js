@@ -20,7 +20,7 @@ let timer = setInterval(()=>{
 }, (1000*30)*60);
 
 server.use(restify.plugins.queryParser());
-//server.use(cors({ origin: 'http://localhost:3000' }));
+server.use(cors({ origin: '*' }));
 
 server.get("/rmt/:type/all", scripts.selectAll);
 server.head("/rmt/:type/all", scripts.selectAll);

@@ -13,7 +13,7 @@ export default function Graph({ initialProps }) {
   useEffect(() => {
     setLoading(true)
 
-    fetch('http://localhost:8080/v1/historical/Elzowin')
+    fetch('https://mobitracker.co/rmt/historical/mari')
       .then((res) => res.json())
       .then((data) => {
         setData(data)
