@@ -16,7 +16,7 @@ const server = restify.createServer({
 scan();
 
 let timer = setInterval(()=>{
-  scan();
+  scan(true);
 }, (1000*30)*60);
 
 server.use(restify.plugins.queryParser());
