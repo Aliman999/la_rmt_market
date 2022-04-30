@@ -28,6 +28,15 @@ server.head("/v1/:type/all", scripts.selectAll);
 server.get("/v1/historical/:server", scripts.selectServer);
 server.head("/v1/historical/:server", scripts.selectServer);
 
+server.get("/v1/test", (req, res, next) => {
+  res.send("Success");
+  next();
+});
+server.head("/v1/test", (req, res, next) => {
+  res.send("Success");
+  next();
+});
+
 server.listen(25599, function () {
   console.log('%s listening at %s', server.name, server.url);
 });
