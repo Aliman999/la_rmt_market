@@ -28,6 +28,6 @@ server.head("/v1/:type/all", scripts.selectAll);
 server.get("/v1/historical/:server", scripts.selectServer);
 server.head("/v1/historical/:server", scripts.selectServer);
 
-server.listen(8080, function () {
+server.listen(25599, function () {
   console.log('%s listening at %s', server.name, server.url);
 });
