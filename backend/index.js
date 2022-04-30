@@ -22,17 +22,17 @@ let timer = setInterval(()=>{
 server.use(restify.plugins.queryParser());
 server.use(cors({ origin: 'http://localhost:3000' }));
 
-server.get("/v1/rmt/:type/all", scripts.selectAll);
-server.head("/v1/rmt/:type/all", scripts.selectAll);
+server.get("/rmt/:type/all", scripts.selectAll);
+server.head("/rmt/:type/all", scripts.selectAll);
 
-server.get("/v1/rmt/historical/:server", scripts.selectServer);
-server.head("/v1/rmt/historical/:server", scripts.selectServer);
+server.get("/rmt/historical/:server", scripts.selectServer);
+server.head("/rmt/historical/:server", scripts.selectServer);
 
-server.get("/v1/rmt/test", (req, res, next) => {
+server.get("/rmt/test", (req, res, next) => {
   res.send("Success");
   next();
 });
-server.head("/v1/rmt/test", (req, res, next) => {
+server.head("/rmt/test", (req, res, next) => {
   res.send("Success");
   next();
 });
