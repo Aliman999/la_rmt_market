@@ -7,7 +7,7 @@ const cors = require("cors");
 const fs = require('fs');
 
 const server = restify.createServer({
-  name: 'mobitracker',
+  name: 'la_rmt',
   version: '1.0.0',
   certificate: fs.readFileSync('/etc/letsencrypt/live/ws.mobitracker.co/fullchain.pem'),
   key: fs.readFileSync('/etc/letsencrypt/live/ws.mobitracker.co/privkey.pem'),
