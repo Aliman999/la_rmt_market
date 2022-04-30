@@ -1,7 +1,6 @@
 'use strict'
 const cheerio = require("cheerio");
 const puppeteer = require("puppeteer-extra");
-const moment = require("moment");
 
 const StealthPlugin = require("puppeteer-extra-plugin-stealth");
 const insert = require("../mysql/insert");
@@ -48,7 +47,7 @@ function scan(refresh = false){
 
     /*
     g2g.server.forEach(async (item, i)=>{
-      await insert(moment(new Date()).format('YYYY-MM-DD HH:mm:ss'), g2g.source, g2g.server[i], g2g.region[i], g2g.subRegion[i], g2g.offer[i], g2g.price[i]);
+      await insert(g2g.source, g2g.server[i], g2g.region[i], g2g.subRegion[i], g2g.offer[i], g2g.price[i]);
     })
     */
 
@@ -60,7 +59,7 @@ function scan(refresh = false){
 
     if (g2g.server.length != search.length) {
       g2g.server.forEach(async (item, i) => {
-        await insert(moment(new Date()).format('YYYY-MM-DD HH:mm:ss'), g2g.source, g2g.server[i], g2g.region[i], g2g.subRegion[i], g2g.offer[i], g2g.price[i]);
+        await insert(g2g.source, g2g.server[i], g2g.region[i], g2g.subRegion[i], g2g.offer[i], g2g.price[i]);
       });
 
       await getSource(g2g.source).then((result) => {
