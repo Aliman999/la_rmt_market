@@ -44,11 +44,11 @@ function select(data = { source: null, server: null, region: null, subRegion: nu
     params.forEach((item, i) => {
       if (i == params.length - 1) {
         if((dataKeys[i] == "offer" && compare[dataKeys[i]] != "=") || (dataKeys[i] == "price" && compare[dataKeys[i]] != "=")){
-          statement += `${dataKeys[i]} ${compare[dataKeys[i]]} ?;`;
+          statement += `${dataKeys[i]} ${compare[dataKeys[i]]} ?`;
         } else if (dataKeys[i] == "price" && compare[dataKeys[i]] == "="){
-          statement += `ROUND(${dataKeys[i]}, 10) = ROUND(?, 10);`
+          statement += `ROUND(${dataKeys[i]}, 10) = ROUND(?, 10)`
         } else{
-          statement += `${dataKeys[i]} = ?;`;
+          statement += `${dataKeys[i]} = ?`;
         }
       } else {
         if ((dataKeys[i] == "offer" && compare[dataKeys[i]] != "=") || (dataKeys[i] == "price" && compare[dataKeys[i]] != "=")) {
@@ -60,6 +60,8 @@ function select(data = { source: null, server: null, region: null, subRegion: nu
         }
       }
     });
+
+    statement += ` ORDER BY id DESC;`; //can cause problems
 
     query(statement, params).then((result, err)=>{
       if(err) reject(err);

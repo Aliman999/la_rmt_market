@@ -9,7 +9,10 @@ const config = {
   Key: process.env.KEY,
   Secret: process.env.SECRET,
   Quick: process.env.QUICK,
-  Full: process.env.FULL
+  Full: process.env.FULL,
+  Env: process.env.DEV_ENVIRONMENT,
 };
+
+console.log(config);
 
 module.exports = config;
