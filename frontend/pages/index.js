@@ -1,11 +1,21 @@
 import Head from 'next/head'
 import Image from 'next/image'
-import Script from 'next/script'
+import { useEffect, useState } from 'react'
 import Chart from '../public/static/chart.js'
 import Graph from '../public/static/graph.js'
 import styles from '../styles/Home.module.css'
+import staticData from '../public/static/d3/data.js'
+import { getCookie } from 'cookies-next';
+
 
 export default function Home() {
+  const [server, setServer] = useState('mari')
+
+  useEffect(() => {
+    setServer(getCookie('server') ? getCookie('server') : 'mari');
+    staticData.server = getCookie('server') ? getCookie('server') : 'mari';
+  }, [])
+
   return (
     <div className={styles.container}>
       <Head>
@@ -16,7 +26,7 @@ export default function Home() {
 
       <main className={styles.main}>
         <h1 className={styles.title}>
-          Lost Ark Gold Market
+          Lost Ark Gold Market (UTC)
         </h1>
 
         <div className={`svg`}>
@@ -24,7 +34,7 @@ export default function Home() {
         </div>
 
         <h3>
-          Mari
+          {server[0].toUpperCase() + server.substring(1)}
         </h3>
 
         <div className={`svg`}>
@@ -44,7 +54,6 @@ export default function Home() {
           </span>
         </a>
       </footer>
-      <Script type='module' src='/static/d3/index.js'/>
     </div>
   )
 }

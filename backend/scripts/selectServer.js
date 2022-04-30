@@ -6,12 +6,12 @@ function selectAll(req, res, next) {
 
   let data = [];
 
-  select({ server: server }).then((result, err) => {
+  select({ server: server, historical: true }).then((result, err) => {
     if (err) console.log(err);
     
     data = result;
 
-    select({ server: server, historical: true }).then((result, err) => {
+    select({ server: server }).then((result, err) => {
       if (err) console.log(err);
 
       data.push(...result);

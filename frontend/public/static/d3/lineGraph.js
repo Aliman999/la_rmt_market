@@ -1,4 +1,5 @@
 'use strict'
+import { html } from "d3";
 import staticData from "./data";
 
 function LineChart(d3, data, {
@@ -149,10 +150,9 @@ function LineChart(d3, data, {
 export default function start(d3) {
   let htmlSVG = document.getElementsByClassName("svg")[1];
 
-  htmlSVG.appendChild(LineChart(d3, staticData, {
+  htmlSVG.appendChild(LineChart(d3, staticData.data, {
     x: d => {
       d.timestamp = new Date(d.timestamp);
-      console.log(d.timestamp);
       return d.timestamp;
     },
     y: d => d.price * 1000,
@@ -162,4 +162,19 @@ export default function start(d3) {
     height: 500,
     color: "steelblue"
   }));
+}
+
+function generateData(num = 1000){
+  let data = [];
+
+  for (let i = 0; i < num; i++) {
+    let date = new Date();
+
+    data.push({
+      price: Math.floor(Math.random() * i),
+      timestamp: date.setDate(date.getDate() + i),
+    });
+  }
+
+  return data;
 }

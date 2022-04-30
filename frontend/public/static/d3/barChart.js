@@ -1,5 +1,7 @@
 'use strict';
 import staticData from "./data.js";
+import Router from 'next/router';
+import { setCookies } from 'cookies-next';
 
 function BarChart(d3, data, {
   x = (d, i) => i, // given d in data, returns the (ordinal) x-value
@@ -22,7 +24,6 @@ function BarChart(d3, data, {
   color = "currentColor" // bar fill color
 } = {}) {
   // Compute values.
-
   const X = d3.map(data, x);
   const Y = d3.map(data, y);
 
@@ -77,10 +78,17 @@ function BarChart(d3, data, {
     .selectAll("rect")
     .data(I)
     .join("rect")
+    .attr("label", d => d.server)
     .attr("x", i => xScale(X[i]))
     .attr("y", i => yScale(Y[i]))
     .attr("height", i => yScale(0) - yScale(Y[i]))
-    .attr("width", xScale.bandwidth());
+    .attr("width", xScale.bandwidth())
+    .on("click", (e) => {
+      e = e.target.children[0].innerHTML.split("\n")[0];
+      staticData.server = e;
+      setCookies('server', e);
+      Router.reload();
+    });
 
   if (title) bar.append("title")
     .text(title);
@@ -96,10 +104,10 @@ function BarChart(d3, data, {
 export default function start(d3) {
   let htmlSVG = document.getElementsByClassName("svg")[0];
 
-  htmlSVG.appendChild(BarChart(d3, staticData, {
+  htmlSVG.appendChild(BarChart(d3, staticData.data, {
     x: d => d.server,
     y: d => d.price * 1000,
-    xDomain: d3.groupSort(staticData, ([d]) => -d.price, d => d.server), // sort by descending frequency
+    xDomain: d3.groupSort(staticData.data, ([d]) => -d.price, d => d.server), // sort by descending frequency
     yFormat: "$",
     yLabel: "↑ Price per 1k/gold",
     width: 1280,

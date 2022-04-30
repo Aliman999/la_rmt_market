@@ -61,10 +61,6 @@ function select(data = { source: null, server: null, region: null, subRegion: nu
       }
     });
 
-    if (data.historical) {
-      statement += ` ORDER BY id DESC;`
-    }
-
     query(statement, params).then((result, err)=>{
       if(err) reject(err);
       callback(result);
