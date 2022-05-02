@@ -6,8 +6,8 @@ const dev = process.env.NODE_ENV !== "production";
 const app = next({ dev });
 const handle = app.getRequestHandler();
 const httpsOptions = {
-  certificate: config.Env == "test" ? null : fs.readFileSync('/etc/letsencrypt/live/ws.mobitracker.co/fullchain.pem'),
-  key: config.Env == "test" ? null : fs.readFileSync('/etc/letsencrypt/live/ws.mobitracker.co/privkey.pem'),
+  certificate: fs.readFileSync('/etc/letsencrypt/live/ws.mobitracker.co/fullchain.pem'),
+  key: fs.readFileSync('/etc/letsencrypt/live/ws.mobitracker.co/privkey.pem'),
 };
 app.prepare().then(() => {
   createServer(httpsOptions, (req, res) => {
