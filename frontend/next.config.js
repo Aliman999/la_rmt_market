@@ -4,6 +4,7 @@ const nextConfig = {
   images: {
     domains: ['mobitracker.co'],
   },
+  basePath: '/lostark',
 }
 
 module.exports = nextConfig
