@@ -12,7 +12,7 @@ const update = require("../mysql/update");
 puppeteer.use(StealthPlugin());
 
 async function scan(refresh = false) {
-  axios.get("https://free.currconv.com/api/v7/convert?q=CAD_USD&compact=ultra&apiKey=dcc64457c46af2533525")
+  await axios.get("https://free.currconv.com/api/v7/convert?q=CAD_USD&compact=ultra&apiKey=dcc64457c46af2533525")
     .then(function (response) {
       rate.CAD_USD = response.data.CAD_USD;
     })
