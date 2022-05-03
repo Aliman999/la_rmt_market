@@ -97,6 +97,11 @@ function scan(refresh = false) {
     console.log("done");
 
     browser.close();
+    
+    let currencyConverter = new CC({ from: "CAD", to: "USD" });
+    currencyConverter.rates().then((response) => {
+      rate.USDtoCAD = response;
+    })
   });
 }
 
