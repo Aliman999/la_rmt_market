@@ -19,6 +19,12 @@ function scan(refresh = false) {
 
   puppeteer.launch({ 
     headless: true,
+    args: [
+      '--aggressive-cache-discard',
+      '--disable-cache',
+      '--disable-application-cache',
+      '--disable-offline-load-stale-cache',
+    ],
   }).then(async browser => {
     console.log('Running...');
     const page = await browser.newPage();
