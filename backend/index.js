@@ -15,7 +15,7 @@ const server = restify.createServer({
   key: config.Env == "test" ? null : fs.readFileSync('/etc/letsencrypt/live/ws.mobitracker.co/privkey.pem'),
 });
 
-scan();
+scan(true);
 
 let timer = setInterval(()=>{
   scan(config.Env == "test" ? false : true);
