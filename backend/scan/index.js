@@ -13,7 +13,7 @@ function scan(refresh = false){
   puppeteer.launch({ headless: true }).then(async browser => {
     console.log('Running...');
     const page = await browser.newPage();
-    
+
     await page.setCacheEnabled(false);
     await page.goto("https://www.g2g.com/categories/lost-ark-gold?region_id=dfced32f-2f0a-4df5-a218-1e068cfadffa", { waitUntil: 'load', timeout: 0 });
     await page.waitForSelector("div.text-body1.ellipsis-2-lines");
@@ -77,6 +77,8 @@ function scan(refresh = false){
           const stringConcat = (g2g.price[index] != item.price && g2g.offer[index] != item.offer);
           console.log(`Updating ${g2g.source} | ${g2g.server[index]} - ${g2g.region[index]} ${g2g.subRegion[index]} - ${g2g.price[index] != item.price ? "Price Discreprency" : ""}${stringConcat ? " and " : ""}${g2g.offer[index] != item.offer ? "Offer Discreprency" : ""}`);
         }
+
+        console.log(`${g2g.source} - \n\n${g2g.server[index]} - ${g2g.offer[index]} at ${g2g.price[index]} \n\nCOMPARED\n\n ${item.server} - ${item.offer} at ${item.price});
 
         update(g2g.source, g2g.server[index], g2g.offer[index], g2g.price[index]);
       })
