@@ -1,7 +1,7 @@
 'use strict'
 //Currency conversion rate
 const rate = {
-  USDtoCAD: 0
+  CAD_USD: 0,
 }
 
 module.exports = rate;

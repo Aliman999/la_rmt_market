@@ -1,7 +1,7 @@
 'use strict'
 const cheerio = require("cheerio");
 const puppeteer = require("puppeteer-extra");
-const CC = require('currency-converter-lt');
+const axios = require('axios').default;
 const rate = require("../params/rate");
 
 const StealthPlugin = require("puppeteer-extra-plugin-stealth");
@@ -12,10 +12,13 @@ const update = require("../mysql/update");
 puppeteer.use(StealthPlugin());
 
 async function scan(refresh = false) {
-  let currencyConverter = new CC({ from: "CAD", to: "USD" });
-  await currencyConverter.rates().then((response) => {
-    rate.USDtoCAD = response;
-  })
+  axios.get("https://free.currconv.com/api/v7/convert?q=CAD_USD&compact=ultra&apiKey=dcc64457c46af2533525")
+    .then(function (response) {
+      rate.CAD_USD = response.data.CAD_USD;
+    })
+    .catch(function (error) {
+      console.log(error);
+    })
 
   puppeteer.launch({ 
     headless: true,
