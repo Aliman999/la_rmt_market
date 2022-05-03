@@ -1,5 +1,6 @@
 'use strict'
 const query = require("./query");
+const CC = require('currency-converter-lt');
 
 function select(data = { source: null, server: null, region: null, subRegion: null, price: null, historical: false }, compare = { offer: "=", price: "=" }){
   return new Promise((callback, reject) => {
@@ -61,8 +62,19 @@ function select(data = { source: null, server: null, region: null, subRegion: nu
       }
     });
 
-    query(statement, params).then((result, err)=>{
-      if(err) reject(err);
+    query(statement, params).then(async (result, err)=>{
+      if (err) reject(err);
+      let rate = 0;
+
+      let currencyConverter = new CC({ from: "CAD", to: "USD" });
+      await currencyConverter.rates().then((response) => {
+        rate = response;
+      })
+
+      for(let i = 0; i < result.length; i++){
+        result[i].price = result[i].price*(rate);
+      }
+
       callback(result);
     });
   })
