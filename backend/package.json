@@ -16,6 +16,7 @@
     "dotenv": "^16.0.0",
     "moment": "^2.29.3",
     "mysql2": "^2.3.3",
+    "nodejs-currency-converter": "^1.0.2",
     "puppeteer-extra": "^3.2.3",
     "puppeteer-extra-plugin-stealth": "^2.9.0",
     "restify": "^8.6.1"
