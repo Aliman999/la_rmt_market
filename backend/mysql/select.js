@@ -67,7 +67,7 @@ function select(data = { source: null, server: null, region: null, subRegion: nu
       if (err) reject(err);
 
       for(let i = 0; i < result.length; i++){
-        result[i].price = result[i].price*(rate.USDtoCAD);
+        result[i].price = result[i].price*(rate.CAD_USD);
       }
 
       callback(result);
