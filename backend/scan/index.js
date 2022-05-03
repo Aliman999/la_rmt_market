@@ -78,7 +78,7 @@ function scan(refresh = false){
           console.log(`Updating ${g2g.source} | ${g2g.server[index]} - ${g2g.region[index]} ${g2g.subRegion[index]} - ${g2g.price[index] != item.price ? "Price Discreprency" : ""}${stringConcat ? " and " : ""}${g2g.offer[index] != item.offer ? "Offer Discreprency" : ""}`);
         }
 
-        console.log(`${g2g.source} - \n\n${g2g.server[index]} - ${g2g.offer[index]} at ${g2g.price[index]} \n\nCOMPARED\n\n ${item.server} - ${item.offer} at ${item.price});
+        console.log(`${g2g.source} - \n\n${g2g.server[index]} - ${g2g.offer[index]} at ${g2g.price[index]} \n\nCOMPARED\n\n ${item.server} - ${item.offer} at ${item.price}`);
 
         update(g2g.source, g2g.server[index], g2g.offer[index], g2g.price[index]);
       })
