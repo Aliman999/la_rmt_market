@@ -12,10 +12,6 @@ const update = require("../mysql/update");
 puppeteer.use(StealthPlugin());
 
 function scan(refresh = false) {
-  let currencyConverter = new CC({ from: "CAD", to: "USD" });
-  currencyConverter.rates().then((response) => {
-    rate.USDtoCAD = response;
-  })
 
   puppeteer.launch({ 
     headless: true,
