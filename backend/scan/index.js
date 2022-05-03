@@ -22,7 +22,7 @@ function scan(refresh = false){
     console.log('Running...');
     const page = await browser.newPage();
 
-    await page.goto("https://www.g2g.com/categories/lost-ark-gold?region_id=dfced32f-2f0a-4df5-a218-1e068cfadffa", { waitUntil: 'load', timeout: 0 });
+    await page.goto("https://www.g2g.com/categories/lost-ark-gold?region_id=dfced32f-2f0a-4df5-a218-1e068cfadffa&sort=lowest_price", { waitUntil: 'load', timeout: 0 });
     await page.waitForSelector("div.text-body1.ellipsis-2-lines");
 
     const dom = await page.$eval('*', (el) => el.innerHTML);
