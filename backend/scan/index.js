@@ -1,7 +1,7 @@
 'use strict'
 const cheerio = require("cheerio");
 const puppeteer = require("puppeteer-extra");
-const CC = require('currency-converter-lt');
+const convertCurrency = require('nodejs-currency-converter');
 const rate = require("../params/rate");
 
 const StealthPlugin = require("puppeteer-extra-plugin-stealth");
@@ -12,6 +12,7 @@ const update = require("../mysql/update");
 puppeteer.use(StealthPlugin());
 
 function scan(refresh = false) {
+  convertCurrency(1, 'CAD', 'USD').then(response => rate.USDtoCAD = response);
 
   puppeteer.launch({ 
     headless: true,
@@ -97,11 +98,6 @@ function scan(refresh = false) {
     console.log("done");
 
     browser.close();
-    
-    let currencyConverter = new CC({ from: "CAD", to: "USD" });
-    currencyConverter.rates().then((response) => {
-      rate.USDtoCAD = response;
-    })
   });
 }
 
